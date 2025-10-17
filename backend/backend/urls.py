@@ -24,13 +24,8 @@ from rest_framework_simplejwt.views import (
 from rest_framework import permissions
 
 
-router = default_router()
-router.register(r'products', ProductViewSet)
-router.register(r'categories', CategoryViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
     path('api/', include('store.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
