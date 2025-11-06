@@ -1,21 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage'; // We will create this next
+import { BrowserRouter , Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
+import HomePage from './pages/HomePage.jsx'; // We will create this next
+import Register from './components/Register.jsx';
+import Login from './components/Login.jsx';
+import { AuthProvider } from './auth/AuthProvider.jsx';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* Add other routes for login, register, etc. later */}
-        </Routes>
-      </main>
-      <Footer />
-    </Router>
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
