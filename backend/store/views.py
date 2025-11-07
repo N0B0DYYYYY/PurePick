@@ -4,6 +4,9 @@ from .models import Product, Category, CartItem, Cart
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .serializers import ProductSerializer, CategorySerializer, UserSerializer, RegisterSerializer, CartItemSerializer,   User
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 
 class RegisterView(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -55,3 +58,17 @@ class CartViewSet(viewsets.ViewSet):
             return Response({'status': 'item removed'})
         except CartItem.DoesNotExist:
             return Response({'error': 'item not in cart'}, status=status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def current_user(request):
+    """
+    Get current user profile
+    """
+    user = request.user
+    return Response({
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        # Add any other user fields you need
+    })
