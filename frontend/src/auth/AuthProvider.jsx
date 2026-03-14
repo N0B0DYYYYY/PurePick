@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            api.get('/me/') 
+            api.get('me/')
                 .then(res => setUser(res.data))
                 .catch(() => {
                     localStorage.removeItem('access_token');
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         const res = await api.post('/token/', { username, password });
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
-        const userRes = await api.get('/me/');
+        const userRes = await api.get('me/');
         setUser(userRes.data);
     };
 

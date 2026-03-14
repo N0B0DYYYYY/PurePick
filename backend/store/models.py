@@ -21,7 +21,7 @@ class Product(models.Model):
     color = models.CharField(max_length=50)
     brand = models.CharField(max_length=100)
     stock = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='products/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
