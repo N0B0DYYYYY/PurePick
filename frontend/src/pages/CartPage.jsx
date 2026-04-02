@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
+import { stripePromise } from '../main.jsx';
 
 const CartPage = () => {
   const [items, setItems] = useState([]);
@@ -43,13 +44,12 @@ const CartPage = () => {
     setError(null);
 
     try {
-      const response = await api.post('cart/checkout/');
-      alert(`Checkout successful! Total paid: $${response.data.total}`);
-      navigate('/');
+      const response = await api.post('create-checkout-session/');
+      // Redirect to the Stripe Checkout URL provided by backend
+      window.location.href = response.data.url;
     } catch (err) {
       console.error(err);
       setError('Checkout failed. Please try again.');
-    } finally {
       setCheckoutLoading(false);
     }
   };

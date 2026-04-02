@@ -26,7 +26,8 @@ class Command(BaseCommand):
             )
             category_objs[name] = cat
             if created:
-                self.stdout.write(self.style.SUCCESS(f'Created category: {name}'))
+                self.stdout.write(self.style.SUCCESS(
+                    f'Created category: {name}'))
 
         product_templates = [
             {
@@ -134,4 +135,5 @@ class Command(BaseCommand):
             if created:
                 products_created += 1
 
-        self.stdout.write(self.style.SUCCESS(f'Created {products_created} example products.'))
+        self.stdout.write(self.style.SUCCESS(
+            f'Created {products_created} example products.'))

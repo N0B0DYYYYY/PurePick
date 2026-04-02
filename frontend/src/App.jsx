@@ -5,6 +5,8 @@ import Footer from './components/Footer.jsx';
 import HomePage from './pages/HomePage.jsx';
 import CartPage from './pages/CartPage.jsx';
 import ProductPage from './pages/ProductPage.jsx';
+import CheckoutSuccess from './pages/CheckoutSuccess.jsx';
+import CheckoutCancel from './pages/CheckoutCancel.jsx';
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
 import { AuthProvider } from './auth/AuthProvider.jsx';
@@ -19,6 +21,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/checkout/success" element={<CheckoutSuccess />} />
+            <Route path="/checkout/cancel" element={<CheckoutCancel />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>
